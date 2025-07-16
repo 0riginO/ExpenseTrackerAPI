@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using ExpenseTrackerAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Connection string for the database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Register the DbContext with the dependency injection container
+builder.Services.AddDbContext<ExpenseTrackerDbContext>(options =>
+options.UseSqlServer(connectionString));
 
 // Add services to the container.
 
