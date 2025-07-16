@@ -45,5 +45,24 @@ namespace ExpenseTrackerAPI.Controllers
 			return expense;
 		}
 
+		// HTTP POST endpoint to add a new expense
+		// Route: POST api/expenses
+		[HttpPost]
+		public async Task<ActionResult<Expense>> AddExpense(Expense newExpense)
+		{
+			// Validate input: return 400 Bad Request if the incoming expense object is null
+			if (newExpense == null)
+				return BadRequest();
+
+			// Add the new expense to the EF Core change tracker
+			_context.Expenses.Add(newExpense);
+
+			// Save the changes asynchronously to the database
+			await _context.SaveChangesAsync();
+
+			// Return 201 Created response with a Location header pointing to the new resource
+			// This uses GetExpenseById to generate the URL to the new item
+			return CreatedAtAction(nameof(GetExpenseById), new { id = newExpense.Id }, newExpense);
+		}
 	}
 }
