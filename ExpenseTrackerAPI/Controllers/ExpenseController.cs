@@ -28,5 +28,22 @@ namespace ExpenseTrackerAPI.Controllers
 			// Fetches all expenses asynchronously from the database
 			return Ok(await _context.Expenses.ToListAsync());
 		}
+
+		// HTTP GET endpoint to retrieve a single expense by its ID
+		// Route: GET api/expenses/{id}
+		[HttpGet("{id}")]
+		public async Task<ActionResult<Expense>> GetExpenseById(int id)
+		{
+			// Attempt to find the expense in the database by its primary key
+			var expense = await _context.Expenses.FindAsync(id);
+
+			// If no matching expense is found, return a 404 Not Found response
+			if (expense == null)
+				return NotFound();
+
+			// If found, return the expense (automatically serialized to JSON)
+			return expense;
+		}
+
 	}
 }
