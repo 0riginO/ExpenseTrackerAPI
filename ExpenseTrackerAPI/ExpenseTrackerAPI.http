@@ -1,5 +1,11 @@
 @ExpenseTrackerAPI_HostAddress = http://localhost:5181
 
 ###
+# Get all expenses
 GET {{ExpenseTrackerAPI_HostAddress}}/api/expenses/
+Accept: application/json
+
+###
+# Get a single expense by ID
+GET {{ExpenseTrackerAPI_HostAddress}}/api/expenses/2
 Accept: application/json
