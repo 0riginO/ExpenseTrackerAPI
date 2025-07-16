@@ -14,6 +14,12 @@ namespace ExpenseTrackerAPI.Data
 
 			// Seeding initial data into the table
 			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<Expense>()
+			.Property(e => e.Amount)
+			.HasPrecision(18, 2);
+			//.HasColumnType("decimal(18,2)"); // This can also be used to specify the column type
+
 			modelBuilder.Entity<Expense>().HasData(
 				new Expense { Id = 1, Name = "Office Supplies", Amount = 100, DateAdded = new DateTime(2023, 1, 1) },
 				new Expense { Id = 2, Name = "Travel", Amount = 500, DateAdded = new DateTime(2023, 2, 15) },
