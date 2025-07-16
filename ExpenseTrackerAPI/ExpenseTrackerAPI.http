@@ -9,3 +9,12 @@ Accept: application/json
 # Get a single expense by ID
 GET {{ExpenseTrackerAPI_HostAddress}}/api/expenses/2
 Accept: application/json
+
+###
+# Add a new expense
+POST {{ExpenseTrackerAPI_HostAddress}}/api/expenses/
+Content-Type: application/json
+{
+  "name": "Tutorial Book",
+  "amount": 30.00
+}
