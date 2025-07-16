@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ExpenseTrackerAPI.Model;
+using ExpenseTrackerAPI.Models;
 
 namespace ExpenseTrackerAPI.Data
 {
