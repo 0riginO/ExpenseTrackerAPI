@@ -64,5 +64,33 @@ namespace ExpenseTrackerAPI.Controllers
 			// This uses GetExpenseById to generate the URL to the new item
 			return CreatedAtAction(nameof(GetExpenseById), new { id = newExpense.Id }, newExpense);
 		}
+
+		// HTTP PUT endpoint to update an existing expense
+		// Route: PUT api/expenses/{id}
+		[HttpPut("{id}")]
+		public async Task<IActionResult> UpdateExpense(int id, Expense updatedExpense)
+		{
+			// Check if the incoming expense object is null
+			// If so, return 400 Bad Request with a message
+			if (updatedExpense == null)
+				return BadRequest("Invalid expense data.");
+
+			// Try to find the existing expense in the database by ID
+			var expense = await _context.Expenses.FindAsync(id);
+
+			// If not found, return 404 Not Found
+			if (expense == null)
+				return NotFound();
+
+			// Update the existing expense with new values
+			expense.Name = updatedExpense.Name;
+			expense.Amount = updatedExpense.Amount;
+
+			// Save the changes to the database asynchronously
+			await _context.SaveChangesAsync();
+
+			// Return 204 No Content to indicate the update was successful
+			return NoContent();
+		}
 	}
 }
