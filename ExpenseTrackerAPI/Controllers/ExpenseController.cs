@@ -92,5 +92,27 @@ namespace ExpenseTrackerAPI.Controllers
 			// Return 204 No Content to indicate the update was successful
 			return NoContent();
 		}
+		
+		// HTTP DELETE endpoint to remove an expense by ID
+		 // Route: DELETE api/expenses/{id}
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteExpense(int id)
+		{
+			// Try to find the expense in the database by its ID
+			var expense = await _context.Expenses.FindAsync(id);
+
+			// If the expense does not exist, return 404 Not Found
+			if (expense == null)
+				return NotFound();
+
+			// Mark the expense for deletion
+			_context.Expenses.Remove(expense);
+
+			// Commit the deletion to the database
+			await _context.SaveChangesAsync();
+
+			// Return 204 No Content to indicate the operation was successful with no return body
+			return NoContent();
+		}
 	}
 }
