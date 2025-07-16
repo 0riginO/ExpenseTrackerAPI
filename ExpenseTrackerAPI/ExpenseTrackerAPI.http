@@ -28,3 +28,8 @@ Content-Type: application/json
   "name": "Phone",
   "amount": 400.00
 }
+
+###
+# Delete an existing expense
+DELETE {{ExpenseTrackerAPI_HostAddress}}/api/expenses/4
+ 
