@@ -18,3 +18,13 @@ Content-Type: application/json
   "name": "Tutorial Book",
   "amount": 30.00
 }
+
+###
+# Update an existing expense
+PUT {{ExpenseTrackerAPI_HostAddress}}/api/expenses/2
+Content-Type: application/json
+{
+  "id": 2,
+  "name": "Phone",
+  "amount": 400.00
+}
