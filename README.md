@@ -50,7 +50,6 @@ dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Your-Db-Connectio
 Add-Migration "InitialCreateWithSeed"
 Update-Database
 ```
----
 
 ### 4. **Running the project**
 
