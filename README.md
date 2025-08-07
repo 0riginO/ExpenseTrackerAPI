@@ -51,6 +51,14 @@ Add-Migration "InitialCreateWithSeed"
 Update-Database
 ```
 ---
+
+### 4. **Running the project**
+
+```cmd
+cd ExpenseTrackerAPI
+dotnet run
+```
+---
 ##📫 API Endpoints
 
 | Method | Route | Description |
